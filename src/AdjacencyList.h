@@ -1,12 +1,14 @@
 #include <string>
 #include <map>
+#include <unordered_map>
 #include <vector>
 using std::map;
+using std::unordered_map;
 using std::string;
 using std::vector;
 
 class AdjacencyList {
-   map<int, vector<int> > graph;
+   unordered_map<int, vector<int> > graph;
    map<string, int> key;
    int incrementer;
 

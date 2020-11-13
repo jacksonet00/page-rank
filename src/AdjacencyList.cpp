@@ -43,21 +43,21 @@ void AdjacencyList::insert_edge(string from, string to) {
 }
 
 void AdjacencyList::page_rank(int p) {
-   vector<float> r1(key.size(), (1 / (float)key.size()));
-   for (int x = 0; x < p - 1; x++) {
-      vector<float> r2(key.size(), 0);
+   vector<float> r1(key.size(), (1 / (float)key.size())); // O(V)
+   for (int x = 0; x < p - 1; x++) { // O(p)
+      vector<float> r2(key.size(), 0); // O(V)
       // Matrix multiplication using adjacency list
-      for (map<string, int>::iterator i = key.begin(); i != key.end(); i++) {
-         for (int j = 0; j < graph[i->second].size(); j++) {
-            r2[graph[i->second][j]] += (1 / out_degree(i->first)) * r1[i->second];
+      for (map<string, int>::iterator i = key.begin(); i != key.end(); i++) { // O(V)
+         for (int j = 0; j < graph[i->second].size(); j++) { // O(E)
+            r2[graph[i->second][j]] += (1 / out_degree(i->first)) * r1[i->second]; // O(log(v) + k)
          }
       }
-      r1 = r2;
+      r1 = r2; // O(V)
    }
-   normalize(r1);
+   normalize(r1); // O(V)
 
    // Print ranks
-   for (map<string, int>::iterator iter = key.begin(); iter != key.end(); ++iter) {
+   for (map<string, int>::iterator iter = key.begin(); iter != key.end(); ++iter) { // O(V)
       cout << iter->first << " ";
       cout << fixed << showpoint;
       cout << setprecision(2);
