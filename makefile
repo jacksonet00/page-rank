@@ -1,2 +1,2 @@
 build:
-	g++ -o out main.cpp AdjacencyList.cpp
+	g++ -o bin/out src/main.cpp src/AdjacencyList.cpp
